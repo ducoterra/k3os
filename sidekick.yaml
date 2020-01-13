@@ -2,10 +2,10 @@ hostname: sidekick
 ssh_authorized_keys:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFb/p/AdaQMlWqUNlE3NdSiX8Wxpr2q4gmsW/h/IbC2uU47VynMK5NZjZs00+HTRRg6LSj42zF9Q6zxn2RCoG0WGvU7c9JJbmnr9OB+TWg+0vBK0Ic9p5or5pMLE7OGRMiNwvIxmNXyBEH7m1VIz+Z2iiuOtNeicSOa8nTtz7mt+fQX6rCpolekFFbi+Hraq/wI9EDZO3FqWISEkHkLbYhwJS87PYkqIiuLqZhYahx7KtYcfVMpPuYy6Wjtd8enTT7FWHaeU9YkDtLF0XhDQOAWAvfpz0xfmsl2obzLJ5KMMlhCMz9FPfuglxnFy8X7QsnZ2KdVjwu6QcYlULFWBxt ducoterra@DucoBook.local"
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnm4eAiX1VgQ4k0lkginBzXSjiSvdThVFzzibkJAopQGLFmuBSj7WSpEFqWYIzGbHsr+lySXX6gWPk5PycbxUeR/FSwT4yO5D9XdApd68dujFC1LetBJiv0fmbnJxoi+/L0t33ytq5lGXdD9kB63P3OkzTASqMM3CgLQVzsalNIlJ91Lvqh8UM53w94BCTuD2j6LGPH76lVUH5k51cZ8R3yFoskOnTEXNDVyxiY87dtwmIw7ipkHfb7a/jkFcgt+MzL9DMS5OZy7ZlNgHnYEweDLkUWsKl52x3UiSDpd5mU2mlqyJMKOc2omG9gm8RPpP/zeDfBUzjDPoMcPg4lNhJ ducoterra@DucoPC"
-write_files:
-  - content: |
-      [service_ethernet]
-      Type = ethernet
-      IPv4 = 3.14.2.103/255.255.255.0/3.14.2.1
-      Nameservers = 1.1.1.1,1.0.0.1
-    path: /var/lib/connman/eth.config
+# write_files:
+#   - content: |
+#       [service_ethernet]
+#       Type = ethernet
+#       IPv4 = 3.14.2.103/255.255.255.0/3.14.2.1
+#       Nameservers = 1.1.1.1,1.0.0.1
+#     path: /var/lib/connman/eth.config
