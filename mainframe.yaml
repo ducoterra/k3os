@@ -5,10 +5,3 @@ ssh_authorized_keys:
 boot_cmd:
   - "mdadm --assemble --scan"
   - "mount /dev/md127p1 /var/lib/rancher/k3s/storage"
-# write_files:
-#   - content: |
-#       [service_ethernet]
-#       Type = ethernet
-#       IPv4 = 3.14.1.101/255.255.255.0/3.14.1.1
-#       Nameservers = 1.1.1.1,1.0.0.1
-#     path: /var/lib/connman/eth.config
