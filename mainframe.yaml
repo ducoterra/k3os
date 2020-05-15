@@ -1,53 +1,12 @@
 hostname: mainframe
 ssh_authorized_keys:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFb/p/AdaQMlWqUNlE3NdSiX8Wxpr2q4gmsW/h/IbC2uU47VynMK5NZjZs00+HTRRg6LSj42zF9Q6zxn2RCoG0WGvU7c9JJbmnr9OB+TWg+0vBK0Ic9p5or5pMLE7OGRMiNwvIxmNXyBEH7m1VIz+Z2iiuOtNeicSOa8nTtz7mt+fQX6rCpolekFFbi+Hraq/wI9EDZO3FqWISEkHkLbYhwJS87PYkqIiuLqZhYahx7KtYcfVMpPuYy6Wjtd8enTT7FWHaeU9YkDtLF0XhDQOAWAvfpz0xfmsl2obzLJ5KMMlhCMz9FPfuglxnFy8X7QsnZ2KdVjwu6QcYlULFWBxt ducoterra@DucoBook.local"
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnm4eAiX1VgQ4k0lkginBzXSjiSvdThVFzzibkJAopQGLFmuBSj7WSpEFqWYIzGbHsr+lySXX6gWPk5PycbxUeR/FSwT4yO5D9XdApd68dujFC1LetBJiv0fmbnJxoi+/L0t33ytq5lGXdD9kB63P3OkzTASqMM3CgLQVzsalNIlJ91Lvqh8UM53w94BCTuD2j6LGPH76lVUH5k51cZ8R3yFoskOnTEXNDVyxiY87dtwmIw7ipkHfb7a/jkFcgt+MzL9DMS5OZy7ZlNgHnYEweDLkUWsKl52x3UiSDpd5mU2mlqyJMKOc2omG9gm8RPpP/zeDfBUzjDPoMcPg4lNhJ ducoterra@DucoPC"
 boot_cmd:
-  - "mount -U 05c4745d-7a27-498a-a910-387e98b736ca /var/lib/rancher/k3s/storage"
   - "echo '127.0.0.1 hub.ducoterra.net' | tee --append /etc/hosts"
-write_files:
-- encoding: ""
-  content: |-
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: coredns
-      namespace: kube-system
-    data:
-      Corefile: |
-        .:53 {
-            errors
-            health
-            ready
-            kubernetes cluster.local in-addr.arpa ip6.arpa {
-              pods insecure
-              upstream
-              fallthrough in-addr.arpa ip6.arpa
-            }
-            hosts /etc/coredns/NodeHosts {
-              reload 1s
-              fallthrough
-            }
-            prometheus :9153
-            forward . /etc/resolv.conf
-            cache 30
-            loop
-            reload
-            loadbalance
-        }
-        ducoterra.net:53 {
-          forward . 3.14.3.100
-        }
-    ---
-    apiVersion: storage.k8s.io/v1
-    kind: StorageClass
-    metadata:
-      name: local-path
-      annotations:
-        storageclass.kubernetes.io/is-default-class: "false"
-    provisioner: rancher.io/local-path
-    volumeBindingMode: WaitForFirstConsumer
-    reclaimPolicy: Delete
-  owner: root
-  path: /var/lib/rancher/k3s/server/manifests/overrides.yaml
-  permissions: '0755'
+k3os:
+  k3s_args:
+  - server
+  - "--disable"
+  - "traefik"
+  - "--disable"
+  - "local-storage"
