@@ -1,9 +1,11 @@
 hostname: mainframe
 ssh_authorized_keys:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFb/p/AdaQMlWqUNlE3NdSiX8Wxpr2q4gmsW/h/IbC2uU47VynMK5NZjZs00+HTRRg6LSj42zF9Q6zxn2RCoG0WGvU7c9JJbmnr9OB+TWg+0vBK0Ic9p5or5pMLE7OGRMiNwvIxmNXyBEH7m1VIz+Z2iiuOtNeicSOa8nTtz7mt+fQX6rCpolekFFbi+Hraq/wI9EDZO3FqWISEkHkLbYhwJS87PYkqIiuLqZhYahx7KtYcfVMpPuYy6Wjtd8enTT7FWHaeU9YkDtLF0XhDQOAWAvfpz0xfmsl2obzLJ5KMMlhCMz9FPfuglxnFy8X7QsnZ2KdVjwu6QcYlULFWBxt ducoterra@DucoBook.local"
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDo38PQaFYNQfPhnNvwQb64AKs36VzAVk9ReYnbwfp4WYdOrVRxMDwvcCabemhkwdONSRTqN4TQLZ52KY99/SkCPEiPwu53kqQtZHFxMfw6YPwzmf84/iMHxRH2dq3lHaJpLolJtfVsdGE/gVa0Vd+fcE6q5tSLXta5kfYjSM5LtlaNrLS2mJpe72G7mtf9KpdGcliUzTFIXJVavujaG8kSrLjZe7AtkX3pi/jLw+sM/dES6YwY9mxZNCrGXZH+8/PfFdTeyVw4Us4SN3yOzPRPCzWdJ32A50Z9xj1+WtoE5sfmoHG4z3ZMI18ARLa6allRHjFhUVBPY++fq7sRuuDJ pi@backupi"
 boot_cmd:
   - "echo '127.0.0.1 hub.ducoterra.net' | tee --append /etc/hosts"
-  - "mount UUID='c3be2199-7274-4e54-b1cd-5ef12d76a3ab' /local/"
+  - "mount UUID='bcbbf2fd-6782-4087-92da-fb80c261621f' /nvme"
+  - "mount UUID='9704433f-c46b-4827-80f0-8e2686a9269e' /media/backup"
 k3os:
   k3s_args:
   - server
@@ -11,3 +13,6 @@ k3os:
   - "traefik"
   - "--disable"
   - "local-storage"
+  ntp_servers:
+  - 0.us.pool.ntp.org
+  - 1.us.pool.ntp.org
