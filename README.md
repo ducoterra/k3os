@@ -36,21 +36,8 @@ ifconfig eth1 down && ifconfig eth1 up
 
 ## Testing
 
-
 ### Disk
 
 ```bash
 dd if=/dev/zero of=/media/nfs/output bs=16k count=100k; dd if=/media/nfs/output of=/dev/null; rm -f /media/nfs/output
 ```
-
-dd if=/dev/zero of=/mnt/enc0/kube/output bs=16k count=100k; dd if=/mnt/enc0/kube/output of=/dev/null; rm -f /mnt/enc0/kube/output
-
-1,073,741,824
-
-ix0
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-60.00  sec  6.58 GBytes   942 Mbits/sec                  receiver
-
-ix1
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-60.00  sec  6.57 GBytes   941 Mbits/sec                  receiver
