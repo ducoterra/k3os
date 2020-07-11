@@ -1,13 +1,10 @@
 hostname: mainframe
 ssh_authorized_keys:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFb/p/AdaQMlWqUNlE3NdSiX8Wxpr2q4gmsW/h/IbC2uU47VynMK5NZjZs00+HTRRg6LSj42zF9Q6zxn2RCoG0WGvU7c9JJbmnr9OB+TWg+0vBK0Ic9p5or5pMLE7OGRMiNwvIxmNXyBEH7m1VIz+Z2iiuOtNeicSOa8nTtz7mt+fQX6rCpolekFFbi+Hraq/wI9EDZO3FqWISEkHkLbYhwJS87PYkqIiuLqZhYahx7KtYcfVMpPuYy6Wjtd8enTT7FWHaeU9YkDtLF0XhDQOAWAvfpz0xfmsl2obzLJ5KMMlhCMz9FPfuglxnFy8X7QsnZ2KdVjwu6QcYlULFWBxt ducoterra@DucoBook.local"
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDo38PQaFYNQfPhnNvwQb64AKs36VzAVk9ReYnbwfp4WYdOrVRxMDwvcCabemhkwdONSRTqN4TQLZ52KY99/SkCPEiPwu53kqQtZHFxMfw6YPwzmf84/iMHxRH2dq3lHaJpLolJtfVsdGE/gVa0Vd+fcE6q5tSLXta5kfYjSM5LtlaNrLS2mJpe72G7mtf9KpdGcliUzTFIXJVavujaG8kSrLjZe7AtkX3pi/jLw+sM/dES6YwY9mxZNCrGXZH+8/PfFdTeyVw4Us4SN3yOzPRPCzWdJ32A50Z9xj1+WtoE5sfmoHG4z3ZMI18ARLa6allRHjFhUVBPY++fq7sRuuDJ pi@backupi"
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDsdSEA9c5NJ/spcAi3Ev7uvZL8lZ8IklkJFOb2/o21nrw8NGn3+UBI4VNU2HXf75IPMXd8Xzt80U2gtfEMf//dBx6xRWK+9vfdJOzfmAXU5zbi+3E9oQwno6Wu+Qi+jm7cVw5Nl9qtj6BbmgQp4WBTwY0fmi5y2dcZIhSzfpSbrKcttXNWdASFT/xhigop1GEzUy5Ziz8oD0Vr6erGU10ttXh5XKzgZRXFscRDujIMUQTC2OpUKFiHZ0CbbB938apRPfDpkhsuGKP1SfNgueZQx3W51wEp9ekYrb3uBXMxujBp6zvCHo0LpBl5KLh9mFhWaoPhYwuRh6w/h5YRyUw/ root@freenas.ducoterra.net"
 boot_cmd:
   - "echo '127.0.0.1 hub.ducoterra.net' | tee --append /etc/hosts"
   - "echo '6.0.22.2 freenas' | tee --append /etc/hosts"
   - "mount UUID='bcbbf2fd-6782-4087-92da-fb80c261621f' /nvme"
-  - "mount UUID='9704433f-c46b-4827-80f0-8e2686a9269e' /media/backup"
 run_cmd:
   - "ip addr add 6.0.22.1/24 dev eth0"
   - "ip link set dev eth0 up"
