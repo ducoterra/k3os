@@ -8,6 +8,7 @@ boot_cmd:
 run_cmd:
   - "ip addr add 6.0.22.1/24 dev eth0"
   - "ip link set dev eth0 up"
+  - "ip link set dev eth0 mtu 9000"
 k3os:
   k3s_args:
   - server
