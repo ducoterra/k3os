@@ -26,15 +26,5 @@ data:
         loadbalance
     }
     ducoterra.net:53 {
-      forward . 3.14.3.100
+      forward . 3.14.3.104
     }
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: local-path
-  annotations:
-    storageclass.kubernetes.io/is-default-class: "false"
-provisioner: rancher.io/local-path
-volumeBindingMode: WaitForFirstConsumer
-reclaimPolicy: Delete
