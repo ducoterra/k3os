@@ -20,8 +20,6 @@ mount UUID='62A28E6D-EDC1-4825-BCD9-1F58601B5E36' /local
 
 ## Network
 
-https://help.ui.com/hc/en-us/articles/115013212107-UFiber-Enabling-Ubiquiti-SFP-and-SFP-Modules-on-Third-Party-Devices
-
 ```bash
 ip addr add 6.0.22.1/30 dev eth1
 ip link set eth1 up

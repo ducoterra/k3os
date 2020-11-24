@@ -1,6 +1,7 @@
 hostname: mainframe
 ssh_authorized_keys:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFb/p/AdaQMlWqUNlE3NdSiX8Wxpr2q4gmsW/h/IbC2uU47VynMK5NZjZs00+HTRRg6LSj42zF9Q6zxn2RCoG0WGvU7c9JJbmnr9OB+TWg+0vBK0Ic9p5or5pMLE7OGRMiNwvIxmNXyBEH7m1VIz+Z2iiuOtNeicSOa8nTtz7mt+fQX6rCpolekFFbi+Hraq/wI9EDZO3FqWISEkHkLbYhwJS87PYkqIiuLqZhYahx7KtYcfVMpPuYy6Wjtd8enTT7FWHaeU9YkDtLF0XhDQOAWAvfpz0xfmsl2obzLJ5KMMlhCMz9FPfuglxnFy8X7QsnZ2KdVjwu6QcYlULFWBxt ducoterra@DucoBook.local"
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaXVc2+dvnvzDE4GPQ/H9btIZL4mENo/u7aHFt/EbIvRsd8GdbO/ionpQqI9lh9syNkQMjld/zlA9rqzRv8MFMcVwiM0vfLMDs7Cu8Kd5u9bClgaR1NbfuWFM7kIfXI+MOZmpQokeYbOWr8agLALF4JAKplpOwSEirbUIM7ff6h3bvi8XKGlqQpZ1nbZLRwmRRjAvTNq/8j7Ql/nRlZmJo81ETlXAdCajOiIH+Fi3g/EM8XzRsMKFot3RtrbJeVJI5Yt5jhq6exATqlZfVciQUIHHez/Xgzjr1e5GJ39SSUFehgwWzl8TzMYT3fX1nopkb683gYr7bDMovraK79PYP ducoterra@freenas.ducoterra.net"
 boot_cmd:
   - "echo '127.0.0.1 hub.ducoterra.net' | tee --append /etc/hosts"
   - "echo '6.0.22.2 freenas' | tee --append /etc/hosts"
