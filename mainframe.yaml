@@ -4,7 +4,6 @@ ssh_authorized_keys:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaXVc2+dvnvzDE4GPQ/H9btIZL4mENo/u7aHFt/EbIvRsd8GdbO/ionpQqI9lh9syNkQMjld/zlA9rqzRv8MFMcVwiM0vfLMDs7Cu8Kd5u9bClgaR1NbfuWFM7kIfXI+MOZmpQokeYbOWr8agLALF4JAKplpOwSEirbUIM7ff6h3bvi8XKGlqQpZ1nbZLRwmRRjAvTNq/8j7Ql/nRlZmJo81ETlXAdCajOiIH+Fi3g/EM8XzRsMKFot3RtrbJeVJI5Yt5jhq6exATqlZfVciQUIHHez/Xgzjr1e5GJ39SSUFehgwWzl8TzMYT3fX1nopkb683gYr7bDMovraK79PYP ducoterra@freenas.ducoterra.net"
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM6LvK2IMLXAJPAip0ozV6WcWsxtnGFZRfQzvpJbZl+r+TPdW+coKMenrnD5SZHfoL9EV6Wmg+F+td+rWAYGZ7xPOO3Kz1F5dEOnQ14YUttneTrsbj+4KGbxj9wNX3iQyFIsDSqjjumZVzUjQfFVbWrt1/UQFL35XttQju9mRVXGrE/AMKlbGmycpqabxyti0G1xCW81sXiMCTd0L/he83q18CGQbsdAEQkniTdiAtkPEn5QGl3UgGPAKoV3TbYjYCQ+LZ0FOGEV9A2O+U/nw9L1GpqwXHPJ/RNo+WzSFLIRkn3fFPrvIki7t2yzlxnWMrnRz+2LBTA5ake6FJfi8p ducoterra@dev"
 boot_cmd:
-  - "echo '127.0.0.1 hub.ducoterra.net' | tee --append /etc/hosts"
   - "echo '6.0.22.2 freenas' | tee --append /etc/hosts"
   - "echo America/New_York > /etc/timezone"
 run_cmd:
@@ -14,6 +13,7 @@ run_cmd:
 k3os:
   k3s_args:
   - server
+  - "--private-registry=/var/lib/rancher/k3s/registries.yaml"
   - "--disable"
   - "traefik"
   - "--disable"
