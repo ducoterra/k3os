@@ -1,11 +1,10 @@
 hostname: mainframe
 ssh_authorized_keys:
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFb/p/AdaQMlWqUNlE3NdSiX8Wxpr2q4gmsW/h/IbC2uU47VynMK5NZjZs00+HTRRg6LSj42zF9Q6zxn2RCoG0WGvU7c9JJbmnr9OB+TWg+0vBK0Ic9p5or5pMLE7OGRMiNwvIxmNXyBEH7m1VIz+Z2iiuOtNeicSOa8nTtz7mt+fQX6rCpolekFFbi+Hraq/wI9EDZO3FqWISEkHkLbYhwJS87PYkqIiuLqZhYahx7KtYcfVMpPuYy6Wjtd8enTT7FWHaeU9YkDtLF0XhDQOAWAvfpz0xfmsl2obzLJ5KMMlhCMz9FPfuglxnFy8X7QsnZ2KdVjwu6QcYlULFWBxt ducoterra@DucoBook.local"
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaXVc2+dvnvzDE4GPQ/H9btIZL4mENo/u7aHFt/EbIvRsd8GdbO/ionpQqI9lh9syNkQMjld/zlA9rqzRv8MFMcVwiM0vfLMDs7Cu8Kd5u9bClgaR1NbfuWFM7kIfXI+MOZmpQokeYbOWr8agLALF4JAKplpOwSEirbUIM7ff6h3bvi8XKGlqQpZ1nbZLRwmRRjAvTNq/8j7Ql/nRlZmJo81ETlXAdCajOiIH+Fi3g/EM8XzRsMKFot3RtrbJeVJI5Yt5jhq6exATqlZfVciQUIHHez/Xgzjr1e5GJ39SSUFehgwWzl8TzMYT3fX1nopkb683gYr7bDMovraK79PYP ducoterra@freenas.ducoterra.net"
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDM6LvK2IMLXAJPAip0ozV6WcWsxtnGFZRfQzvpJbZl+r+TPdW+coKMenrnD5SZHfoL9EV6Wmg+F+td+rWAYGZ7xPOO3Kz1F5dEOnQ14YUttneTrsbj+4KGbxj9wNX3iQyFIsDSqjjumZVzUjQfFVbWrt1/UQFL35XttQju9mRVXGrE/AMKlbGmycpqabxyti0G1xCW81sXiMCTd0L/he83q18CGQbsdAEQkniTdiAtkPEn5QGl3UgGPAKoV3TbYjYCQ+LZ0FOGEV9A2O+U/nw9L1GpqwXHPJ/RNo+WzSFLIRkn3fFPrvIki7t2yzlxnWMrnRz+2LBTA5ake6FJfi8p ducoterra@dev"
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj/4dbq6aRmaQ2lnySJLUySXYGx/ZIrYcRb6kczGey63zfadURR+k/d3+8JD56Mm89D4bSpfB6alAYa4R5H4MVHhYbc6RHBAMuh76XXPEkJBpQZ1SNZA8ycZKX6Qc9zHCQYYiCmK6/WxyMjyX4NUiDu0+kQ7TQiJ5bFA6fVyIeCYvbO/SZcVVzlA3Xz25akCyB8/dJccj+3ais+sh+K8mFv0Kbs76G0xCXj7tZ6sWeDnXbIUn0SaqofKv+Z7Y0d1D54gZWROuM2fsDkHmQIuU5QT003m79JbQxAnkDPAI2DQxplrzw6Ifcvu0h6oqOQ412snVJ/FYYJyizSpKjs8JeNTeM47rL64VJO7jDmJLD/nWumEGLr6WyCebibekgApbr4QUyiABqjYs41opf8+AzOERcj8s563hdI3eBkKxHKAm6+EvzAs0evdao+NeHKWBgcG8b9UjL+l1IFchRGB1MGrCD8DTwvtYaf5RaXQZwROnW9LvsRxrMHHlwJuC8mAc="
 boot_cmd:
   - "echo '6.0.22.2 freenas' | tee --append /etc/hosts"
   - "echo America/New_York > /etc/timezone"
+  - "echo 'TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem' >> /etc/ssh/sshd_config"
 run_cmd:
   - "ip addr add 6.0.22.1/24 dev eth0"
   - "ip link set dev eth0 up"
@@ -27,3 +26,7 @@ write_files:
   owner: root:root
   path: /etc/localtime
   permissions: '0644'
+- content: |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQD3JshtNF0kfkiB6Dz4SQ7w5jSgx80N10egh39smzFUAmNECirdAJ9yMo28B2WD9uPX6NfAWySMuvi3H8fg0Lp/rLsDqrc3+wk72AmEf1KWSijAKwQ6/MI3Vvzi3m58oL3q6Y5CDaJN+Ir7ySYgTJntZ3jGfWBK0t/oIp7eET3d4zMYSJ5JbN2Rnj9cDxamT3sESe4ZVTn3inmgdijLR7r3epMButCszvZ7wsMra11nIHUHQRuqzEZTfms2lT+GpllhjSkLg95F+lFRKjV5huc9pb67wuFsWASYNqlAefa4w9vSW34idtvJyUJpSptIvtX1h0E2eVC0JX8R57n+Lf31UzcYqiY6+/HVd3ZPEjgtCcYVL97eIN/tDL9yzj/uDfXLp+qSDcxsv9EXshWuth0ZjOTlJUFDW9uCIMVO9cx7zzRYNtEZcUnXuWtSCNmTctFY5qt3s+qtkOu4Y8UjW7GHkJfSXlYbbply+mUwEIJ7D68hF+/MOSbrK22deD/Q8jlNh/ucSZOHckI2qb7PvTtibE5xu4qSEu/Gw+er5SVbEVvGl8a9hZJU3vH6GBIP5rqxpFR+ehejj3pEZHtss4/0EUUpILIkKsi50E6VWrPFaISBigX9e4RZF9iwHaG6ODMpFzuo3ljMzTelVaxyIuMmkqWgjL/KlMzpOcFHl1izbw==
+  owner: root:root
+  path: /etc/ssh/trusted-user-ca-keys.pem

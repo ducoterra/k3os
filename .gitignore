@@ -1,4 +1,5 @@
 server/
+templates/
 *.crt
 *.pem
 *.key

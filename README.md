@@ -1,5 +1,31 @@
 # Configuration Settings
 
+## Requirements
+
+1. Install kustomize
+
+    ```bash
+    brew install yq
+    ```
+
+2. Configure vault variables
+
+    ```bash
+    vault kv put secret/k3os-alpha.dnet/agent token=<token> server_url=<server_url>
+    ```
+
+3. Template your server or agent
+
+    ```bash
+    # server
+    HOSTNAME=<HOSTNAME>; yq e ".hostname = \"$HOSTNAME\" | .k3os.token = \"$(vault kv get -field=token secret/k3os-alpha.dnet/agent)\" | .k3os.server_url = \"$(vault kv get -field=server_url secret/k3os-alpha.dnet/agent)\"" k3os_server.yaml > templates/$HOSTNAME.yaml
+
+    # agent
+    HOSTNAME=<HOSTNAME>; yq e ".hostname = \"$HOSTNAME\" | .k3os.token = \"$(vault kv get -field=token secret/k3os-alpha.dnet/agent)\" | .k3os.server_url = \"$(vault kv get -field=server_url secret/k3os-alpha.dnet/agent)\"" k3os_agent.yaml > templates/$HOSTNAME.yaml
+    ```
+
+4. Save the template to /var/lib/rancher/k3os/config.yaml
+
 ## Draining
 
 ```bash
@@ -9,7 +35,7 @@ kubectl --context mainframe-admin drain mainframe --force --ignore-daemonsets --
 ## Upgrading
 
 ```bash
-kubectl label node mainframe plan.upgrade.cattle.io/k3os-latest=enabled --overwrite
+kubectl label node k3os-alpha k3os.io/upgrade=enabled --overwrite
 ```
 
 ## Mounting
