@@ -3,3 +3,5 @@ templates/
 *.crt
 *.pem
 *.key
+archive/
+ignore/

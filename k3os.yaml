@@ -1,0 +1,36 @@
+hostname: k3os
+ssh_authorized_keys:
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj/4dbq6aRmaQ2lnySJLUySXYGx/ZIrYcRb6kczGey63zfadURR+k/d3+8JD56Mm89D4bSpfB6alAYa4R5H4MVHhYbc6RHBAMuh76XXPEkJBpQZ1SNZA8ycZKX6Qc9zHCQYYiCmK6/WxyMjyX4NUiDu0+kQ7TQiJ5bFA6fVyIeCYvbO/SZcVVzlA3Xz25akCyB8/dJccj+3ais+sh+K8mFv0Kbs76G0xCXj7tZ6sWeDnXbIUn0SaqofKv+Z7Y0d1D54gZWROuM2fsDkHmQIuU5QT003m79JbQxAnkDPAI2DQxplrzw6Ifcvu0h6oqOQ412snVJ/FYYJyizSpKjs8JeNTeM47rL64VJO7jDmJLD/nWumEGLr6WyCebibekgApbr4QUyiABqjYs41opf8+AzOERcj8s563hdI3eBkKxHKAm6+EvzAs0evdao+NeHKWBgcG8b9UjL+l1IFchRGB1MGrCD8DTwvtYaf5RaXQZwROnW9LvsRxrMHHlwJuC8mAc="
+boot_cmd:
+  - "echo 'TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem' >> /etc/ssh/sshd_config"
+k3os:
+  k3s_args:
+  - server
+  - "--cluster-init"
+  - "--disable"
+  - "traefik"
+  ntp_servers:
+  - 0.us.pool.ntp.org
+  - 1.us.pool.ntp.org
+write_files:
+- content: |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQD3JshtNF0kfkiB6Dz4SQ7w5jSgx80N10egh39smzFUAmNECirdAJ9yMo28B2WD9uPX6NfAWySMuvi3H8fg0Lp/rLsDqrc3+wk72AmEf1KWSijAKwQ6/MI3Vvzi3m58oL3q6Y5CDaJN+Ir7ySYgTJntZ3jGfWBK0t/oIp7eET3d4zMYSJ5JbN2Rnj9cDxamT3sESe4ZVTn3inmgdijLR7r3epMButCszvZ7wsMra11nIHUHQRuqzEZTfms2lT+GpllhjSkLg95F+lFRKjV5huc9pb67wuFsWASYNqlAefa4w9vSW34idtvJyUJpSptIvtX1h0E2eVC0JX8R57n+Lf31UzcYqiY6+/HVd3ZPEjgtCcYVL97eIN/tDL9yzj/uDfXLp+qSDcxsv9EXshWuth0ZjOTlJUFDW9uCIMVO9cx7zzRYNtEZcUnXuWtSCNmTctFY5qt3s+qtkOu4Y8UjW7GHkJfSXlYbbply+mUwEIJ7D68hF+/MOSbrK22deD/Q8jlNh/ucSZOHckI2qb7PvTtibE5xu4qSEu/Gw+er5SVbEVvGl8a9hZJU3vH6GBIP5rqxpFR+ehejj3pEZHtss4/0EUUpILIkKsi50E6VWrPFaISBigX9e4RZF9iwHaG6ODMpFzuo3ljMzTelVaxyIuMmkqWgjL/KlMzpOcFHl1izbw==
+  owner: root:root
+  path: /etc/ssh/trusted-user-ca-keys.pem
+- content: |
+    AllowTcpForwarding      no
+    GatewayPorts            no
+    PasswordAuthentication  no
+    X11Forwarding           no
+    PermitRootLogin         no
+    LoginGraceTime          30s
+    MaxAuthTries            5
+
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+
+    Subsystem   sftp    internal-sftp
+    TrustedUserCAKeys /etc/ssh/trusted-user-ca-keys.pem
+  owner: root:root
+  path: /etc/ssh/sshd_config
